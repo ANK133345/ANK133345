@@ -1,0 +1,42 @@
+def eucleadean_distance(point_a,point_b):
+    return np.sqrt(np.sum((point_a - point_b))**2)
+
+def get_distance(X_train,X_test):
+    distances = []
+    for train_point in X_train:
+        d = eucleadean_distance(X_test,train_point)
+        distances.append(d)
+    return distances
+
+def get_indices(distances,K):
+    k_indices = np.argsort(distances)
+    k_nearest = k_indices[:K]
+    return k_nearest
+
+def majority_vote(Y_train,k_nearest):
+    k_nearest_label = Y_train[k_nearest]
+    return Counter(k_nearest_label).most_common(1)[0][0]
+
+def Knn_prediction(X_train,Y_train,X_test,k=3):
+    prediction = []
+    for test_point in X_test:
+       distances = get_distance(X_train,test_point)
+       indices = get_indices(distances,k)
+       labels = majority_vote(Y_train,indices)
+       prediction.append(labels)
+
+    return prediction
+
+X_train = np.array([[150, 7],
+                    [200, 9],
+                    [ 80, 4],
+                    [170, 8]])
+
+# y_train — the label for each of those 4 fruits
+Y_train = np.array(['apple', 'mango', 'grape', 'apple'])
+
+# X_test — 1 mystery fruit, same measurements
+X_test = np.array([[160, 7]])
+
+prediction = Knn_prediction(X_train,Y_train,X_test,k=3)
+print(prediction)
