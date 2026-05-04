@@ -1,0 +1,12 @@
+def one_hot(X,n_cols = None):
+
+    if n_cols is None:
+        n_cols = np.max(X) + 1
+
+    one_hot = np.zeros((X.size,n_cols))
+    one_hot[np.arange(X.size),X] = 1
+    return one_hot
+
+X = np.array([0,1,2,1,0])
+result = one_hot(X)
+print(result)
