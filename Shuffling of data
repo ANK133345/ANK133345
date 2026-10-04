@@ -1,0 +1,21 @@
+X = np.array([[1, 2], [3, 4], [5, 6], [7, 8]])
+y = np.array([1, 2, 3, 4])
+def shuffle_data(X,y):
+    np.random.seed(42)
+    indices = np.random.permutation(len(X))
+    return X[indices],y[indices]
+res = shuffle_data(X,y)
+print(res)
+
+
+
+class shuffle_data:
+    def __init__(self,X,y):
+      self.X = X
+      self.y = y
+    def shuffle(self):
+        np.random.seed(42)
+        indices = np.random.permutation(len(X))
+        return X[indices],y[indices]
+res = shuffle_data(X,y)
+res.shuffle()
