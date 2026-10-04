@@ -1,0 +1,12 @@
+
+import numpy as np
+x = np.array([0, 1, 2, 1, 0])
+def one_hot_encoding(x):
+  rows = x.shape[0]
+  cols = len(np.unique(x))
+  indices = np.zeros([rows,cols])
+  for i in range(rows):
+      indices[i,x[i]] = 1
+  return indices
+output = one_hot_encoding(x)
+print(output)
