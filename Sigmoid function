@@ -1,0 +1,15 @@
+import numpy as np
+def sigmoid_function(x):
+     return 1/(1 + np.exp(-x))
+x = 4
+res = sigmoid_function(x)
+print(round(res,4))
+
+
+class sigmoid_function:
+    def __init__(self,x):
+         self.x = x
+    def sigmoid(self):
+        return 1/(1 + np.exp(-self.x))
+res = sigmoid_function(x)
+print(round(res.sigmoid(),4))
