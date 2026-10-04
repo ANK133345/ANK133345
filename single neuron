@@ -1,0 +1,22 @@
+import numpy as np
+features = np.array([[0.5, 1.0], [-1.5, -2.0], [2.0, 1.5]])
+labels = np.array([0, 1, 0])
+weights = np.array([0.7, -0.4])
+bias = -0.1
+class SingleNeuron:
+  
+   def __init__(self, weights, bias):
+      self.weights = weights
+      self.bias = bias
+   def forward(self, input_data):
+      output = np.dot(input_data, self.weights) + self.bias
+      activation = 1 / (1 + np.exp(-output))
+      return np.round(activation, 3)
+   def mse(self, activation, labels_data):
+       error = np.mean((labels_data - activation)**2)
+       return np.round(error, 3)
+neuron_instance = SingleNeuron(weights, bias)
+activation_output = neuron_instance.forward(features)
+print(f"Activation: {activation_output}")
+mean_squared_error = neuron_instance.mse(activation_output, labels)
+print(f"MSE: {mean_squared_error}")
